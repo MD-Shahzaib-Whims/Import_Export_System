@@ -11,29 +11,12 @@ export default function Home() {
       </div>
 
       <SimpleExcelImporter
-        requiredColumns={[
-          "payment_type",
-          "customer_type",
-          "extraChg",
-          "booking_status",
-          "booking_date",
-          "booking_time",
-          "customer_name",
-          "customer_phone",
-          "pickup_address",
-          "drop_address",
-          "vehicle_type",
-          "is_paid",
-        ]}
-        optionalColumns={[
-          "customer_email",
-          "note",
-          "waypoints",
-        ]}
+        requiredColumns={["Name", "Email", "Department"]}
+        optionalColumns={["Phone", "Address", "StartDate", "Salary"]}
         acceptedFormats={[".xlsx", ".csv"]}
         strictSchema={true}
-        title="Upload your bookings file, preview the data for verification, and import it into the system."
-        apiEndpoint="http://localhost:3333/api/v1/booking/upload"
+        title="Employee Data Import with API Submission"
+        apiEndpoint="https://api.example.com/employees"
       />
 
       <div className="mt-8 p-4 bg-muted rounded-md">
@@ -60,6 +43,33 @@ export default function Home() {
               <li>Customize the file field name</li>
               <li>Support for multipart/form-data</li>
               <li>File validation for size and format</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 className="text-xl font-semibold mt-6 mb-2">Template Download Feature</h2>
+        <p className="mb-2">The system now includes a template download feature to help users prepare their data:</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="border rounded-md p-4">
+            <h3 className="text-lg font-medium mb-2">Multiple Format Support</h3>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Excel (.xlsx) for most users</li>
+              <li>CSV (.csv) for universal compatibility</li>
+              <li>JSON (.json) for technical users</li>
+              <li>Includes sample data for guidance</li>
+              <li>Automatically updated with configuration changes</li>
+            </ul>
+          </div>
+
+          <div className="border rounded-md p-4">
+            <h3 className="text-lg font-medium mb-2">Comprehensive Instructions</h3>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Step-by-step import guide</li>
+              <li>Detailed field descriptions</li>
+              <li>Required vs. optional fields clearly marked</li>
+              <li>Data format requirements</li>
+              <li>Tips for successful imports</li>
             </ul>
           </div>
         </div>

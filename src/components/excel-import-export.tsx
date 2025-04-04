@@ -26,7 +26,9 @@ import type {
 } from "@/lib/types"
 import { defaultImporterConfig, createDefaultColumnConfig } from "@/lib/default-config"
 import { ApiSubmissionDialog } from "./api-submission-dialog"
+// Import the new component
 import { FailedSubmissionsIndicator } from "./failed-submissions-indicator"
+import { TemplateDownloadButton } from "./template-download-button"
 
 interface ExcelImportExportProps {
   requiredColumns?: string[]
@@ -87,6 +89,7 @@ export function ExcelImportExport({
   const [fileHeaders, setFileHeaders] = useState<string[]>([])
   const [processedData, setProcessedData] = useState<any[]>([])
   const [originalData, setOriginalData] = useState<any[]>([])
+
   const [showApiDialog, setShowApiDialog] = useState<boolean>(false)
 
   const handleFileData = (fileData: any[], name: string, file?: File) => {
@@ -409,10 +412,13 @@ export function ExcelImportExport({
             <div className="flex flex-col items-center justify-center space-y-4">
               <FileUploader onFileData={handleFileData} acceptedFormats={importerConfig.acceptedFormats} />
 
-              <Button variant="outline" onClick={() => setShowAdvancedConfig(true)} className="mt-4">
-                <Settings className="mr-2 h-4 w-4" />
-                Configure Import Settings
-              </Button>
+              <div className="flex space-x-2 mt-4">
+                <TemplateDownloadButton config={importerConfig} />
+                <Button variant="outline" onClick={() => setShowAdvancedConfig(true)}>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Configure Import Settings
+                </Button>
+              </div>
             </div>
           </TabsContent>
 
@@ -421,6 +427,7 @@ export function ExcelImportExport({
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold">Preview: {fileName}</h2>
                 <div className="flex space-x-2">
+                  <TemplateDownloadButton config={importerConfig} variant="secondary" size="sm" />
                   <Button variant="outline" onClick={() => setShowAdvancedConfig(true)}>
                     <Settings className="mr-2 h-4 w-4" />
                     Configure Fields
